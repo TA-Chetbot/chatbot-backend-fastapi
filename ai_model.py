@@ -153,6 +153,6 @@ instruction_format: str = (
     "{answer}"
 )
     
-tokenizer: PreTrainedTokenizerBase = AutoTokenizer.from_pretrained('distilgpt2')
+tokenizer: PreTrainedTokenizerBase = AutoTokenizer.from_pretrained('gpt2')
 tokenizer.pad_token = tokenizer.eos_token
-model: nn.Module = AutoModelForCausalLM.from_pretrained('../model/distilgpt2')
+model: nn.Module = AutoModelForCausalLM.from_pretrained('../gpt2')
