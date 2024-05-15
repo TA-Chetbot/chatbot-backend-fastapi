@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Union
-from ai_model import preprocess_text, generate_text_sampling_top_p_nucleus_22
+from ai_model import preprocess_question, generate_text_sampling_top_p_nucleus_22
 
 app = FastAPI()
 
@@ -26,6 +26,6 @@ def read_root():
 
 @app.post("/get_answer")
 def get_answer(ai_response: AIResponseModel):
-    question = preprocess_text(ai_response.question)
+    question = preprocess_question(ai_response.question)
     answer = generate_text_sampling_top_p_nucleus_22(question)
-    return {"question": question, "answer": answer}
+    return {"preprocessed_question": question, "answer": answer}
