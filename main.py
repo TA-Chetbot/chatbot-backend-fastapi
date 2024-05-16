@@ -19,6 +19,9 @@ app.add_middleware(
 class AIResponseModel(BaseModel):
     question: str
 
+class PreprocessQuestionModel(BaseModel):
+    text: str
+
 @app.get("/")
 def read_root():
     response = {"message": "hello world", "status": "ok"}
@@ -26,6 +29,9 @@ def read_root():
 
 @app.post("/get_answer")
 def get_answer(ai_response: AIResponseModel):
-    question = preprocess_question(ai_response.question)
-    answer = generate_text_sampling_top_p_nucleus_22(question)
-    return {"preprocessed_question": question, "answer": answer}
+    answer = generate_text_sampling_top_p_nucleus_22(ai_response.question)
+    return {"answer": answer}
+
+@app.post("/preprocess_question")
+def preprocess(preprocess_question: PreprocessQuestionModel):
+    return {"preprocessed_question": preprocess_question(preprocess_question.text)}
