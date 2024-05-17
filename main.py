@@ -22,6 +22,11 @@ class AIResponseModel(BaseModel):
 class PreprocessQuestionModel(BaseModel):
     text: str
 
+@app.get("/")
+def read_root():
+    response = {"message": "hello world", "status": "ok"}
+    return response
+
 @app.post("/get_answer")
 def get_answer(ai_response: AIResponseModel):
     answer = generate_text_sampling_top_p_nucleus_22(ai_response.question)
