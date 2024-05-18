@@ -33,5 +33,5 @@ def get_answer(ai_response: AIResponseModel):
     return {"answer": answer}
 
 @app.post("/preprocess_question")
-def preprocess(preprocess_question: PreprocessQuestionModel):
-    return {"preprocessed_question": preprocess_question(preprocess_question.text)}
+def preprocess(text: PreprocessQuestionModel):
+    return {"preprocessed_question": preprocess_question(text.text)}
