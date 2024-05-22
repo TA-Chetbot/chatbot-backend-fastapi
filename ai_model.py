@@ -155,4 +155,4 @@ instruction_format: str = (
     
 tokenizer: PreTrainedTokenizerBase = AutoTokenizer.from_pretrained('gpt2')
 tokenizer.pad_token = tokenizer.eos_token
-model: nn.Module = AutoModelForCausalLM.from_pretrained('../gpt2')
+model: nn.Module = AutoModelForCausalLM.from_pretrained('./model/gpt2')
