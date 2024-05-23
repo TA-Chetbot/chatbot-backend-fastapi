@@ -10,6 +10,9 @@ COPY requirements.txt .
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install NLTK Stopwords
+RUN ["python", "-c", "import nltk; nltk.download('stopwords')"]
+
 # Copy the application code
 COPY . .
 
