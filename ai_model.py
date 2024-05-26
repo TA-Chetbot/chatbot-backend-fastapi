@@ -1,7 +1,6 @@
 import re
 import spacy
-from typing import List, Dict, Any, Set, Tuple
-import nltk
+from typing import List, Dict, Any, Set
 from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 from transformers import AutoTokenizer, AutoModelForCausalLM
