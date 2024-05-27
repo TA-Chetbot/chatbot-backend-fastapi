@@ -10,6 +10,9 @@ COPY requirements.txt .
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install Torch
+RUN pip install torch --index-url https://download.pytorch.org/whl/cpu
+
 # Install NLTK Stopwords
 RUN ["python", "-c", "import nltk; nltk.download('stopwords')"]
 
@@ -20,4 +23,6 @@ COPY . .
 EXPOSE 8000
 
 # Set the command to start the FastAPI app
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+CMD ["gunicorn", "main:app", "--workers", "4", "--worker-class", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
